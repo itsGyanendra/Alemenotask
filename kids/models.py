@@ -17,11 +17,11 @@ class Kid(models.Model,PhoneValidator):
     kid_name = models.CharField(max_length=200)
     kid_age = models.IntegerField(default=0)
     parent_phone = models.CharField(
-        'Phone No.',
+        'Parent Phone No.',
         validators=[PhoneValidator.phone_regex],
         max_length=10
     )
-    parent_email = models.EmailField('Email Address', max_length=255)
+    parent_email = models.EmailField('Parent Email Address', max_length=255)
     def __str__(self):
          return self.kid_name
 

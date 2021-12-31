@@ -7,6 +7,8 @@ from django.conf import settings
 # Register your models here.
 
 
+class KidAdmin(admin.ModelAdmin):
+    list_display = ('kid_name','kid_age','parent_phone','parent_email')
 
 
 class ImageAdmin(admin.ModelAdmin):
@@ -18,16 +20,6 @@ class ImageAdmin(admin.ModelAdmin):
 
     image_preview.short_description = 'Image Preview'
     image_preview.allow_tags = True
-    
-    
-
-    
-    # def send_mail(self, obj):
-    #     subject = 'Important Notification from Alemeno'
-    #     message = 'Hi ,Your kid have uploaded the food in unknown category.'
-    #     email_from = settings.EMAIL_HOST_USER
-    #     recipient_list = ["alemenotest478@gmail.com"]
-    #     send_mail(subject, message, email_from, recipient_list)
 
     def save_model(self, request, obj, form, change):
         if obj.is_approved:
@@ -38,8 +30,9 @@ class ImageAdmin(admin.ModelAdmin):
            super().save_model(request, obj, form, change)
     
 
-admin.site.register(Kid)
 
+
+admin.site.register(Kid,KidAdmin)
 admin.site.register(Image,ImageAdmin)
 
 
